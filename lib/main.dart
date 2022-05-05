@@ -23,6 +23,6 @@ class MyApp extends StatelessWidget {
             bodyText2: TextStyle(color: Colors.white),
           )),
         ),
-        home: const ScreenMainPage());
+        home:  ScreenMainPage());
   }
 }
