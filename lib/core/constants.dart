@@ -12,3 +12,6 @@ const kBlack = Colors.black;
 final kButtonBlue = Colors.blueAccent[700];
 const kButtonWhite = Colors.white;
 
+// Border Radius
+final kBorderRadius8 = BorderRadius.circular(8);
+
