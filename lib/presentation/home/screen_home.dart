@@ -84,6 +84,9 @@ class _PlayButton extends StatelessWidget {
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kWhite)),
         onPressed: () {},
         icon: const Icon(Icons.play_arrow, size: 30, color: kBlack),
-        label: const Text('Play', style: kText25b));
+        label: const Padding(
+          padding: EdgeInsets.only(right: 8),
+          child: Text('Play', style: kText25b),
+        ));
   }
 }
