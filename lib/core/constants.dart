@@ -7,6 +7,7 @@ const kHeight20 = SizedBox(height: 20);
 // Text related constants
 const kWhite = Colors.white;
 const kBlack = Colors.black;
+const TextStyle kHomeTitleText = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
 
 const kText25b = TextStyle(color: kBlack, fontSize: 22);
 const kText20w = TextStyle(color: kWhite, fontSize: 17);
@@ -25,4 +26,5 @@ const IconThemeData kIcon = IconThemeData(size: 30, color: kWhite);
 
 // Images
 const verticalImage1 ='https://www.indiewire.com/wp-content/uploads/2019/12/one-child-nation.jpeg?w=697';
+const netflixLogo = 'https://venturebeat.com/wp-content/uploads/2016/06/netflix-logo.png?w=1200&strip=all';
 
