@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/number_card.dart';
-import 'package:netflix_clone/presentation/widgets/main_card.dart';
 import 'main_title.dart';
 
 
@@ -23,7 +22,7 @@ class Top10Card extends StatelessWidget {
           maxHeight: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: List.generate(15, (index) =>  NumberCard(index: index,)),
+            children: List.generate(10, (index) =>  NumberCard(index: index,)),
           ),
         )
       ],
