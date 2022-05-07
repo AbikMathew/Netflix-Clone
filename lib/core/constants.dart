@@ -18,6 +18,7 @@ const kButtonWhite = Colors.white;
 
 // Border Radius
 final kBorderRadius8 = BorderRadius.circular(8);
+final kBorderRadius30 = BorderRadius.circular(30);
 
 //Icon
 const IconThemeData kIcon = IconThemeData(size: 30, color: kWhite);
