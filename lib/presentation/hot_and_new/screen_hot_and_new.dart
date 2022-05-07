@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/presentation/home/screen_home.dart';
 import 'package:netflix_clone/presentation/widgets/appbar_widget.dart';
 
 import '../../core/constants.dart';
+import 'widgets/coming_soon_widget.dart';
 
 class ScreenHotAndNew extends StatelessWidget {
   const ScreenHotAndNew({Key? key}) : super(key: key);
@@ -32,26 +34,42 @@ class ScreenHotAndNew extends StatelessWidget {
             ),
             kWidth,
           ],
-          bottom:  TabBar(
-            isScrollable: true,
-            unselectedLabelColor: kWhite,
-            labelColor: kBlack,
-            labelStyle: kHomeTitleText,
-            indicator: BoxDecoration(color: kWhite, borderRadius: kBorderRadius30),
-            tabs:const [
-            Tab(text: "🍿 Coming Soon"),
-            Tab(text: "👀 Everone's watching")
-          ]),
+          bottom: TabBar(
+              isScrollable: true,
+              unselectedLabelColor: kWhite,
+              labelColor: kBlack,
+              labelStyle: kHomeTitleText,
+              indicator:
+                  BoxDecoration(color: kWhite, borderRadius: kBorderRadius30),
+              tabs: const [
+                Tab(text: "🍿 Coming Soon"),
+                Tab(text: "👀 Everone's watching")
+              ]),
         ),
-        body: TabBarView(children:  [
-          _buildTabBarView('Coming Soon'),
-          _buildTabBarView("Everyon's watching"),
+        body: TabBarView(children: [
+          _buildComingSoon(context),
+          _buildEveryonesWatching(),
+          //_buildTabBarView('Coming Soon'),
+          //_buildTabBarView("Everyon's watching"),
         ]),
       ),
     );
   }
 
-  _buildTabBarView(String title){
-    return Center(child: Text(title),);
+  // _buildTabBarView(String title){
+  //   return Center(child: Text(title),);
+  // }
+
+  _buildComingSoon(BuildContext context) {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => const ComingSoonWidget(),
+      shrinkWrap: true,
+    );
+  }
+
+  _buildEveryonesWatching() {
+    return const SizedBox();
   }
 }
+

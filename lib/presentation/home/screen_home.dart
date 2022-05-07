@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix_clone/core/constants.dart';
@@ -47,7 +49,7 @@ class ScreenHome extends StatelessWidget {
                   ),
                   scrollNotifier.value
                       ? AnimatedContainer(
-                        duration: const Duration(seconds: 1),
+                          duration: const Duration(seconds: 1),
                           height: 82,
                           width: double.infinity,
                           color: Colors.black.withOpacity(0.3),
@@ -122,12 +124,12 @@ class BackgroundCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
-              _CustomButton(
+              CustomButton(
                 icon: Icons.add,
                 text: 'My List',
               ),
               _PlayButton(),
-              _CustomButton(
+              CustomButton(
                 icon: Icons.info_outline,
                 text: 'Info',
               )
@@ -139,21 +141,27 @@ class BackgroundCard extends StatelessWidget {
   }
 }
 
-class _CustomButton extends StatelessWidget {
-  const _CustomButton({
-    Key? key,
-    required this.icon,
-    required this.text,
-  }) : super(key: key);
+class CustomButton extends StatelessWidget {
+  const CustomButton(
+      {Key? key,
+      required this.icon,
+      required this.text,
+      this.iconSize = 30,
+      this.textSize = 18})
+      : super(key: key);
 
   final IconData icon;
   final String text;
+  final double iconSize;
+  final double textSize;
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      
       children: [
-        Icon(icon, size: 30),
-        Text(text, style: kText20w),
+        Icon(icon, size: iconSize),
+        Text(text, style: TextStyle(color: kWhite, fontSize: textSize)),
       ],
     );
   }
