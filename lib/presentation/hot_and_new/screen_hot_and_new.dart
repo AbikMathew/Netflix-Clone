@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/presentation/home/screen_home.dart';
+import 'package:netflix_clone/presentation/hot_and_new/widgets/everyones_watching_widget.dart';
 import 'package:netflix_clone/presentation/widgets/appbar_widget.dart';
 
 import '../../core/constants.dart';
@@ -64,12 +65,12 @@ class ScreenHotAndNew extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) => const ComingSoonWidget(),
-      shrinkWrap: true,
     );
   }
 
   _buildEveryonesWatching() {
-    return const SizedBox();
+    return ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) => const EveryonesWatchingWidget());
   }
 }
-

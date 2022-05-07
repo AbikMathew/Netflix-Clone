@@ -19,7 +19,7 @@ class ScreenDownloads extends StatelessWidget {
               title: 'Downloads',
             )),
         body: ListView.separated(
-            itemBuilder: (context, index) => _widgetList[index   ],
+            itemBuilder: (context, index) => _widgetList[index],
             separatorBuilder: (context, index) => const SizedBox(
                   height: 20,
                 ),
@@ -34,9 +34,9 @@ class Section2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final List movieBannerList = [
-      'https://www.themoviedb.org/t/p/w220_and_h330_face/zzXFM4FKDG7l1ufrAkwQYv2xvnh.jpg',
-      'https://www.themoviedb.org/t/p/w220_and_h330_face/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg',
-      'https://www.themoviedb.org/t/p/w220_and_h330_face/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg'
+      'https://i.pinimg.com/236x/6e/25/dd/6e25dda9360a16ba92e554b0337441fb.jpg',
+      'https://i.pinimg.com/236x/3c/a6/1f/3ca61fe3614055f0bc11b1689a6991b4.jpg',
+      'https://i.pinimg.com/236x/cc/f8/38/ccf83886d3821fd5578ad60f0df81657.jpg'
     ];
 
     return Column(
@@ -66,13 +66,13 @@ class Section2 extends StatelessWidget {
                 ),
               ),
               DownloadImageWidget(
-                  movieBannerPic: movieBannerList[1],
+                  movieBannerPic: movieBannerList[2],
                   margin: const EdgeInsets.only(left: 130, bottom: 30),
                   angle: 20,
                   size: Size(size.width * 0.4, size.height * 0.20)),
               DownloadImageWidget(
                   angle: -20,
-                  movieBannerPic: movieBannerList[2],
+                  movieBannerPic: movieBannerList[1],
                   margin: const EdgeInsets.only(right: 130, bottom: 30),
                   size: Size(size.width * 0.4, size.height * 0.20)),
               DownloadImageWidget(
@@ -163,9 +163,6 @@ class DownloadImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String url =
-        ('https://i.pinimg.com/236x/cc/f8/38/ccf83886d3821fd5578ad60f0df81657.jpg');
-    //   final Size size = MediaQuery.of(context).size;
     return Transform.rotate(
       angle: angle * pi / 180,
       child: Container(
@@ -174,7 +171,8 @@ class DownloadImageWidget extends StatelessWidget {
         height: size.height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(url)),
+          image: DecorationImage(
+              fit: BoxFit.cover, image: NetworkImage(movieBannerPic)),
         ),
       ),
     );
