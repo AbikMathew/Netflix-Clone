@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 import 'package:netflix_clone/core/constants.dart';
 
 class VideoListItem extends StatelessWidget {
@@ -11,6 +11,7 @@ class VideoListItem extends StatelessWidget {
       children: [
         Container(
           color: Colors.accents[index % Colors.accents.length],
+          
         ),
         Align(
           alignment: Alignment.bottomLeft,

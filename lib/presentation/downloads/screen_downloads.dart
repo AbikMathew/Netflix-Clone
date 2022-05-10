@@ -36,7 +36,7 @@ class Section2 extends StatelessWidget {
     final List movieBannerList = [
       'https://i.pinimg.com/236x/6e/25/dd/6e25dda9360a16ba92e554b0337441fb.jpg',
       'https://i.pinimg.com/236x/3c/a6/1f/3ca61fe3614055f0bc11b1689a6991b4.jpg',
-      'https://i.pinimg.com/236x/cc/f8/38/ccf83886d3821fd5578ad60f0df81657.jpg'
+      'https://i.pinimg.com/236x/cc/f8/38/ccf83886d3821fd5578ad60f0df81657.jpg',
     ];
 
     return Column(
