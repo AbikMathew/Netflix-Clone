@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
 
+import '../../../API/apis.dart';
+import '../../../API/tmdb_links.dart';
 import '../../../core/constants.dart';
 import '../../home/screen_home.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  const ComingSoonWidget({
+  ComingSoonWidget({
     Key? key,
+    required this.index,
   }) : super(key: key);
+
+  int index;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    List<dynamic> snapshotList = [];
+
+    return FutureBuilder(
+        future: HttpServices().getUpcoming(TMDB.upComing),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            snapshotList = snapshot.data;
+          }
+          return tryOne(snapshot, size, snapshotList, index);
+        });
+  }
+}
+
+Widget tryOne(snapshot, size, snapshotList, index) {
+  if (snapshot.hasData) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(
@@ -30,18 +50,30 @@ class ComingSoonWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               // mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: 200,
-                  child: Image.network(
-                    landscapeImage1,
-                    fit: BoxFit.cover,
-                  ),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                            TMDB.imageId + snapshotList[index].banner,
+                          ),
+                          fit: BoxFit.cover)),
+                  //  child: NetworkImage('${snapshotList[index].image}',),
                 ),
                 kHeight,
                 Row(
                   children: [
-                    const Text('Dune', style: kTextBold40),
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        '${snapshotList[index].title}',
+                        style: kTextBold40,
+                        //maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        //textWidthBasis: TextWidthBasis.longestLine,
+                      ),
+                    ),
                     const Spacer(),
                     Row(
                       children: [
@@ -68,11 +100,13 @@ class ComingSoonWidget extends StatelessWidget {
                 ),
                 const Text('Coming on Friday'),
                 kHeight,
-                const Text('Dune', style: kTextBold20),
+                Text('${snapshotList[index].title}', style: kTextBold20),
                 kHeight,
-                const Text(
-                  'Paul Atreides arrives on Arrakis after his father accepts the stewardship of the dangerous planet. However, chaos ensues after a betrayal as forces clash to control melange, a precious resource.',
+                Text(
+                  '${snapshotList[index].overview}',
                   style: kGreyText,
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -80,5 +114,7 @@ class ComingSoonWidget extends StatelessWidget {
         ],
       ),
     );
+  } else {
+    return const SizedBox();
   }
 }

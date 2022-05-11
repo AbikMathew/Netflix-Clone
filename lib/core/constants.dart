@@ -10,8 +10,8 @@ const kBlack = Colors.black;
 const kGrey = Colors.grey;
 
 const TextStyle kHomeTitleText = TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
-const TextStyle kTextBold40 = TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
-const TextStyle kTextBold20 = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+const TextStyle kTextBold40 = TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
+const TextStyle kTextBold20 = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
 const TextStyle kGreyText= TextStyle(color: kGrey);
 
 const kText25b = TextStyle(color: kBlack, fontSize: 22);

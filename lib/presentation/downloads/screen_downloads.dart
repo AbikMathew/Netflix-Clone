@@ -2,6 +2,8 @@ import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/API/apis.dart';
+import 'package:netflix_clone/API/tmdb_links.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/widgets/appbar_widget.dart';
 
@@ -56,30 +58,39 @@ class Section2 extends StatelessWidget {
         SizedBox(
           width: size.width,
           height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  radius: size.width * 0.35,
-                  backgroundColor: Colors.grey.withOpacity(0.6),
-                ),
-              ),
-              DownloadImageWidget(
-                  movieBannerPic: movieBannerList[2],
-                  margin: const EdgeInsets.only(left: 130, bottom: 30),
-                  angle: 20,
-                  size: Size(size.width * 0.4, size.height * 0.20)),
-              DownloadImageWidget(
-                  angle: -20,
-                  movieBannerPic: movieBannerList[1],
-                  margin: const EdgeInsets.only(right: 130, bottom: 30),
-                  size: Size(size.width * 0.4, size.height * 0.20)),
-              DownloadImageWidget(
-                  movieBannerPic: movieBannerList[0],
-                  margin: EdgeInsets.zero,
-                  size: Size(size.width * 0.4, size.height * 0.25)),
-            ],
+          child: FutureBuilder(
+            future: HttpServices().getTrending(TMDB.trending),
+            builder: (context, AsyncSnapshot snapshot)  {
+              return snapshot.hasData ?
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Center(
+                    child: CircleAvatar(
+                      radius: size.width * 0.35,
+                      backgroundColor: Colors.grey.withOpacity(0.6),
+                    ),
+                  ),
+                  DownloadImageWidget(
+                      //movieBannerPic: movieBannerList[2],
+                      movieBannerPic: snapshot.data[0].image,
+                      margin: const EdgeInsets.only(left: 130, bottom: 30),
+                      angle: 20,
+                      size: Size(size.width * 0.4, size.height * 0.20)),
+                  DownloadImageWidget(
+                      angle: -20,
+                      //movieBannerPic: movieBannerList[1],
+                      movieBannerPic: snapshot.data[1].image,
+                      margin: const EdgeInsets.only(right: 130, bottom: 30),
+                      size: Size(size.width * 0.4, size.height * 0.20)),
+                  DownloadImageWidget(
+                      movieBannerPic: snapshot.data[3].image,
+                      //movieBannerPic: movieBannerList[0],
+                      margin: EdgeInsets.zero,
+                      size: Size(size.width * 0.4, size.height * 0.25)),
+                ],
+              ): const Center();
+            }
           ),
         ),
       ],
@@ -172,7 +183,7 @@ class DownloadImageWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
           image: DecorationImage(
-              fit: BoxFit.cover, image: NetworkImage(movieBannerPic)),
+              fit: BoxFit.cover, image: NetworkImage(TMDB.imageId + movieBannerPic)),
         ),
       ),
     );

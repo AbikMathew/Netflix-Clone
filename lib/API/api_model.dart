@@ -14,3 +14,34 @@ class Trending {
 
   Map<String, dynamic> toJson() => _$TrendingToJson(this);
 }
+
+@JsonSerializable()
+class Upcoming {
+  @JsonKey(name: "backdrop_path")
+  final String banner;
+
+  @JsonKey(name: "poster_path")
+  final String image;
+
+  @JsonKey(name: "title")
+  final String title;
+
+  @JsonKey(name: "release_date")
+  final String date;
+
+  @JsonKey(name: "overview")
+  final String overview;
+
+  Upcoming(
+      {required this.banner,
+      required this.image,
+      required this.date,
+      required this.title,
+      required this.overview});
+
+  factory Upcoming.fromJson(Map<String, dynamic> json) {
+    return _$UpcomingFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() => _$UpcomingToJson(this);
+}

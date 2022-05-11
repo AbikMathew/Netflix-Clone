@@ -64,7 +64,7 @@ class ScreenHotAndNew extends StatelessWidget {
   _buildComingSoon(BuildContext context) {
     return ListView.builder(
       itemCount: 10,
-      itemBuilder: (context, index) => const ComingSoonWidget(),
+      itemBuilder: (context, index) =>  ComingSoonWidget(index: index),
     );
   }
 

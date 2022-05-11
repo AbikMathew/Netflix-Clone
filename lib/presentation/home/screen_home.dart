@@ -1,9 +1,10 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:netflix_clone/API/apis.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/top_10_card.dart';
+import '../../API/tmdb_links.dart';
 import '../widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
@@ -13,6 +14,7 @@ class ScreenHome extends StatelessWidget {
 
   final movieSectionList = [
     const BackgroundCard(),
+    kHeight,
     const MainTitleCard(title: 'Released in the past years'),
     const MainTitleCard(title: 'Trending now'),
     const Top10Card(title: 'Top 10 TV shows in India'),
@@ -58,7 +60,7 @@ class ScreenHome extends StatelessWidget {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Image.network(
                                       netflixLogo,
                                       width: 40,
@@ -109,34 +111,40 @@ class BackgroundCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 600,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              image: DecorationImage(image: NetworkImage(verticalImage1))),
-        ),
-        Positioned(
-          bottom: 50,
-          right: 10,
-          left: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              CustomButton(
-                icon: Icons.add,
-                text: 'My List',
+    return FutureBuilder(
+      future: HttpServices().getTrending(TMDB.trending),
+      builder: (context, AsyncSnapshot snapshot) {
+        return Stack(
+          children: [
+            snapshot.hasData?
+            Container(
+              height: 500,
+              width: double.infinity,
+              decoration:  BoxDecoration(
+                  image: DecorationImage(image: Image.network(TMDB.imageId + snapshot.data[2].image).image)),
+            ):const SizedBox(height: 600,width: double.infinity),
+            Positioned(
+              bottom: 5,
+              right: 10,
+              left: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  CustomButton(
+                    icon: Icons.add,
+                    text: 'My List',
+                  ),
+                  _PlayButton(),
+                  CustomButton(
+                    icon: Icons.info_outline,
+                    text: 'Info',
+                  )
+                ],
               ),
-              _PlayButton(),
-              CustomButton(
-                icon: Icons.info_outline,
-                text: 'Info',
-              )
-            ],
-          ),
-        )
-      ],
+            )
+          ],
+        );
+      }
     );
   }
 }

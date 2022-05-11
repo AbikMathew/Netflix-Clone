@@ -18,4 +18,18 @@ class HttpServices {
       throw 'Couldn\t get list';
     }
   }
+
+   Future<List<dynamic>> getUpcoming(String listType) async {
+    Response res = await get(Uri.parse(listType));
+    if (res.statusCode == 200) {
+      final decodedJson = jsonDecode(res.body);
+      // print(decodedJson);
+      List<dynamic> list = decodedJson['results']
+          .map((item) => Upcoming.fromJson(item))
+          .toList();
+      return list;
+    } else {
+      throw 'Couldn\t get list';
+    }
+  }
 }

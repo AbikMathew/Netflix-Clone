@@ -13,3 +13,19 @@ Trending _$TrendingFromJson(Map<String, dynamic> json) => Trending(
 Map<String, dynamic> _$TrendingToJson(Trending instance) => <String, dynamic>{
       'poster_path': instance.image,
     };
+
+Upcoming _$UpcomingFromJson(Map<String, dynamic> json) => Upcoming(
+      banner: json['backdrop_path'] as String,
+      image: json['poster_path'] as String,
+      date: json['release_date'] as String,
+      title: json['title'] as String,
+      overview: json['overview'] as String,
+    );
+
+Map<String, dynamic> _$UpcomingToJson(Upcoming instance) => <String, dynamic>{
+      'backdrop_path': instance.banner,
+      'poster_path': instance.image,
+      'title': instance.title,
+      'release_date': instance.date,
+      'overview': instance.overview,
+    };
