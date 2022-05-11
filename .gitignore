@@ -47,3 +47,4 @@ app.*.map.json
 
 # Ignore files (apiKey) 
 lib/infrastructure/api_key.dart
+lib/API/tmdb_links.dart
