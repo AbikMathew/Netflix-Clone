@@ -6,12 +6,12 @@ import '../../../core/constants.dart';
 import '../../home/screen_home.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  ComingSoonWidget({
+  const ComingSoonWidget({
     Key? key,
     required this.index,
   }) : super(key: key);
 
-  int index;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +55,7 @@ Widget tryOne(snapshot, size, snapshotList, index) {
                   height: 200,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                            TMDB.imageId + snapshotList[index].banner,
-                          ),
+                          image: NetworkImage(TMDB.imageId + snapshotList[index].banner),
                           fit: BoxFit.cover)),
                   //  child: NetworkImage('${snapshotList[index].image}',),
                 ),
